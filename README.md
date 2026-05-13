@@ -4,38 +4,24 @@ SeatSync is a full-stack train seat exchange platform where verified passengers 
 
 **Live Demo:** https://seatsync-nine.vercel.app/  
 **Source Code:** Private  
-**Preview Repository:** Documentation and UI showcase only
-
----
-
-# Screenshots
-
-> Store screenshots inside a `screenshots/` folder using these names.
-
-![Home](./screenshots/home.png)
-![Journey Verification](./screenshots/journey-verification.png)
-![Seat Map](./screenshots/seat-map.png)
-![Seat Details](./screenshots/seat-details.png)
-![Send Request](./screenshots/send-request.png)
-![Incoming Request](./screenshots/incoming-request.png)
-![Profile History](./screenshots/profile-history.png)
+**Preview Repository:** Documentation and project showcase only
 
 ---
 
 # Project Overview
 
-SeatSync solves a practical passenger problem where travelers often want to exchange berths inside the same train coach but lack a clean digital workflow for verification, request management, and mutual approval.
+SeatSync solves a practical passenger problem where travelers often want to exchange berths inside the same train coach but lack a proper digital workflow for verification, request handling, and mutual approval.
 
 The platform provides a controlled seat-exchange environment where passengers can:
 
 - Verify journey details
-- Access a coach-specific seat map
+- Access a coach-specific live seat map
 - Inspect verified passenger seats
 - Send exchange requests
 - Accept or reject incoming requests
 - Complete swaps after two-sided final confirmation
 
-The workflow is designed around trust, fairness, and mutual consent.
+The system focuses on trust, fairness, and real-time interaction between passengers.
 
 ---
 
@@ -48,11 +34,11 @@ The workflow is designed around trust, fairness, and mutual consent.
 - Protected passenger-only routes
 - Live coach seat map
 - Sleeper, 3AC, 2AC, and 1AC coach layouts
-- Seat state visualization
-- Passenger exchange preference system
+- Seat state visualization system
+- Passenger exchange preference support
 - Complete swap request lifecycle management
 - Duplicate active request prevention
-- Mutual final confirmation before seat reassignment
+- Mutual final confirmation before reassignment
 - In-app notification updates
 - Profile and exchange history tracking
 - Polling-based real-time refresh
@@ -225,7 +211,7 @@ Verified checks include:
 - Public deployment uses in-memory demo data
 - Source code remains private
 
-This repository exists only for project showcase, screenshots, workflow explanation, and recruiter preview.
+This repository exists only for project showcase, workflow explanation, and recruiter preview.
 
 ---
 

@@ -1,98 +1,247 @@
 # SeatSync
 
-SeatSync is a modern seat-exchange platform designed to simplify coach-based seat swapping during train journeys through a secure mutual-confirmation workflow.
+SeatSync is a full-stack train seat exchange platform where verified passengers on the same train and coach can inspect a live coach map, view exchange preferences, send swap requests, and complete a seat exchange only after both passengers give final consent.
 
-🔗 Live Demo: https://seatsync-nine.vercel.app/
-
----
-
-## Overview
-
-SeatSync helps passengers exchange seats in a smarter and more organized way. Users can explore available seats within their coach, send exchange requests to other passengers, and complete the swap only after both users mutually confirm the request.
-
-The platform was designed with a clean and minimal interface focused on usability, trust, and real-time interaction simulation.
+**Live Demo:** https://seatsync-nine.vercel.app/  
+**Source Code:** Private  
+**Preview Repository:** Documentation and UI showcase only
 
 ---
 
-## Features
+# Screenshots
 
-- Coach-based seat exchange system
-- Mutual confirmation workflow for seat swaps
-- Interactive live seat map
-- Incoming and outgoing request management
-- Multiple demo accounts for testing workflows
-- Passenger profile and journey management
-- Responsive and modern UI/UX
-- Real-time exchange interaction simulation
+> Store screenshots inside a `screenshots/` folder using these names.
 
----
-
-## Demo Workflow
-
-The deployed version can be tested using different demo accounts.
-
-### Example Testing Flow
-
-1. Login using Passenger Account A
-2. Open the live seat map
-3. Send a seat exchange request
-4. Logout and login using Passenger Account B
-5. View the incoming request
-6. Accept the exchange request
-7. Successfully complete the mutual seat exchange workflow
-
-This demonstrates the practical working logic of the platform.
+![Home](./screenshots/home.png)
+![Journey Verification](./screenshots/journey-verification.png)
+![Seat Map](./screenshots/seat-map.png)
+![Seat Details](./screenshots/seat-details.png)
+![Send Request](./screenshots/send-request.png)
+![Incoming Request](./screenshots/incoming-request.png)
+![Profile History](./screenshots/profile-history.png)
 
 ---
 
-## Platform Interface
+# Project Overview
 
-The application includes:
+SeatSync solves a practical passenger problem where travelers often want to exchange berths inside the same train coach but lack a clean digital workflow for verification, request management, and mutual approval.
 
-- Passenger dashboard
-- Journey details section
-- Interactive seat map
-- Request management system
-- Profile management page
-- Exchange confirmation workflow
+The platform provides a controlled seat-exchange environment where passengers can:
 
-Screenshots of these interfaces are included in this repository.
+- Verify journey details
+- Access a coach-specific seat map
+- Inspect verified passenger seats
+- Send exchange requests
+- Accept or reject incoming requests
+- Complete swaps after two-sided final confirmation
+
+The workflow is designed around trust, fairness, and mutual consent.
 
 ---
 
-## Tech Stack
+# Key Features
 
-- React.js
+- Passenger signup and login system
+- JWT-based authentication
+- Password hashing using `bcrypt`
+- Journey verification using seeded records
+- Protected passenger-only routes
+- Live coach seat map
+- Sleeper, 3AC, 2AC, and 1AC coach layouts
+- Seat state visualization
+- Passenger exchange preference system
+- Complete swap request lifecycle management
+- Duplicate active request prevention
+- Mutual final confirmation before seat reassignment
+- In-app notification updates
+- Profile and exchange history tracking
+- Polling-based real-time refresh
+- Vercel deployment support
+
+---
+
+# Seat Exchange Workflow
+
+```text
+Passenger creates account
+        |
+Passenger logs in
+        |
+Passenger verifies journey
+        |
+SeatSync unlocks coach seat map
+        |
+Passenger selects another seat
+        |
+Swap request is created
+        |
+Receiver accepts or rejects
+        |
+Both passengers final confirm
+        |
+SeatSync completes the swap
+        |
+Seat assignments and history update
+```
+
+---
+
+# Demo Credentials
+
+All demo accounts use:
+
+```text
+Password: Travel@123
+```
+
+| Passenger | Email | Coach Seat |
+|---|---|---|
+| Aarav Sharma | `aarav@seatsync.dev` | S1, 41 Lower |
+| Diya Menon | `diya@seatsync.dev` | S1, 42 Middle |
+| Vihaan Kapoor | `vihaan@seatsync.dev` | S1, 43 Upper |
+| Tara Iyer | `tara@seatsync.dev` | S1, 47 Side Lower |
+| Omar Khan | `omar@seatsync.dev` | S1, 48 Side Upper |
+
+---
+
+# Demo Testing Flow
+
+1. Open the live demo
+2. Login using `aarav@seatsync.dev`
+3. Open the live seat map
+4. Select another passenger seat
+5. Send a swap request
+6. Open another browser or incognito window
+7. Login using another demo account
+8. Accept the incoming request
+9. Final confirm from both accounts
+10. SeatSync completes the seat exchange workflow
+
+---
+
+# Journey Verification Samples
+
+New users can verify seeded journey records using the following examples:
+
+| Reference | Passenger | Date | Train | Coach | Seat | From | To |
+|---|---|---|---|---|---|---|---|
+| `PNR-900111` | Ishaan Kapoor | `2026-05-18` | 12901 Rajdhani Express | S1 | 5 | New Delhi | Bhopal |
+| `PNR-900211` | Ananya Roy | `2026-05-19` | 12627 Karnataka Express | B1 | 35 | Bengaluru City | New Delhi |
+| `PNR-900311` | Rahul Verma | `2026-05-20` | 12951 Mumbai Rajdhani | A1 | 17 | Mumbai Central | New Delhi |
+| `PNR-900411` | Neha Arora | `2026-05-21` | 12301 Howrah Rajdhani | H1 | 7 | Howrah | New Delhi |
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- React
+- Vite
+- React Router
+- Axios
+- JavaScript
+- CSS
+
+## Backend
+
 - Node.js
 - Express.js
-- MongoDB
 - JWT Authentication
-- Vercel Deployment
+- bcrypt Password Hashing
+- Helmet
+- CORS
+- PostgreSQL-ready repository layer
+- In-memory demo runtime
+
+## Deployment
+
+- Vercel
+- Static Vite frontend
+- Express API exposed through `/api`
+- Serverless API wrapper configuration
 
 ---
 
-## Repository Information
+# Backend API Surface
 
-This repository is a public showcase version created for demonstration and portfolio purposes.
-
-The complete production source code and implementation files are maintained privately, while this repository highlights the project workflow, UI/UX, and platform functionality.
-
----
-
-## Screenshots
-
-_Add project screenshots here._
-
-Suggested screenshots:
-- Landing Page
-- Passenger Dashboard
-- Live Seat Map
-- Request Workflow
-- Incoming Request View
-- Profile Section
+| Area | Endpoints |
+|---|---|
+| Auth | `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me` |
+| Journey | `POST /api/journey/verify`, `GET /api/journey/current`, `PATCH /api/journey/preference` |
+| Seats | `GET /api/journeys/:journeyId/seats` |
+| Swaps | `POST /api/swaps`, `GET /api/swaps/incoming`, `GET /api/swaps/outgoing`, `GET /api/swaps/:id` |
+| Swap Actions | `PATCH /api/swaps/:id/accept`, `PATCH /api/swaps/:id/reject`, `PATCH /api/swaps/:id/cancel`, `PATCH /api/swaps/:id/final-confirm` |
+| Notifications | `GET /api/notifications`, `PATCH /api/notifications/:id/read` |
+| Health | `GET /api/health` |
 
 ---
 
-## Author
+# Database Design
+
+The backend architecture is structured around these core entities:
+
+- `users`
+- `journeys`
+- `passenger_journeys`
+- `seats`
+- `swap_requests`
+- `notifications`
+- `audit_logs`
+
+The schema supports:
+
+- Verified passenger journeys
+- Assigned seat tracking
+- Original seat preservation
+- Swap request lifecycle management
+- Notification storage
+- Audit logging
+
+---
+
+# Validation And Testing
+
+Verified checks include:
+
+- Production frontend deployment validation
+- API health endpoint verification
+- Protected route authentication checks
+- Demo login verification
+- Journey verification workflow testing
+- Seat map rendering validation
+- Swap creation workflow testing
+- Duplicate request prevention testing
+- Mutual confirmation workflow testing
+- Frontend production build validation
+
+---
+
+# Current Limitations
+
+- Journey verification uses seeded demo records
+- No live railway API integration
+- Polling-based updates instead of WebSockets
+- Public deployment uses in-memory demo data
+- Source code remains private
+
+This repository exists only for project showcase, screenshots, workflow explanation, and recruiter preview.
+
+---
+
+# What This Project Demonstrates
+
+- Full-stack application architecture
+- Authentication and authorization workflows
+- Real-world business rule implementation
+- Dynamic train coach seat-map rendering
+- Backend validation and service-layer logic
+- API-driven frontend state management
+- Production deployment using Vercel
+- Multi-user mutual-confirmation workflows
+
+---
+
+# Author
 
 Rayan Qamar
